@@ -9,8 +9,8 @@ require 'pry'
 # --------------GET USER INPUT METHODS----------------
 
 def get_user_function
-  puts '''
-  What function would you like to perform? Please type the letter associated with your desired function as indicated below:
+  puts '''What function would you like to perform?
+  Please type the letter associated with your desired function as indicated below:
 
   Type "A" for Addition
   Type "S" for Subtraction
@@ -18,12 +18,15 @@ def get_user_function
   Type "D" for Division
 
   '''
-  gets.chomp
+  gets.chomp.upcase
+
+  # should also test for valid input. if invalid, prompt for correct input and return new input.
+
 end
 
 def get_user_values(user_val_1, user_val_2)
   puts "Please provide the two values you would like me to use in order to calculate your result."
-  # need to think about how to collect these values. separately? can one method return two values? what about use shovel?
+  # need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
 end
 
 
