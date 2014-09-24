@@ -77,16 +77,16 @@ end
 
 def calculate_equation(val_1, val_2, function)
   if function == "A"
-    puts "The solution to your problem is: " + (val_1.to_f + val_2.to_f)
+    puts "The solution to your problem is: " + (val_1.to_f + val_2.to_f).to_s
 
   elsif function == "S"
-    puts "The solution to your problem is " + (val_1.to_f - val_2.to_f)
+    puts "The solution to your problem is " + (val_1.to_f - val_2.to_f).to_s
 
   elsif function == "M"
-    puts "The solution to your problem is" + (val_1.to_f * val_2.to_f)
+    puts "The solution to your problem is" + (val_1.to_f * val_2.to_f).to_s
 
   elsif function == "D"
-    puts "The solution to your problem is " + (val_1.to_f / val_2.to_f)
+    puts "The solution to your problem is " + (val_1.to_f / val_2.to_f).to_s
 
   end
 
@@ -94,8 +94,8 @@ end
 
 # --------------MAIN CODE TO RUN----------------
 
-puts get_user_function # only use for testing
-binding.pry # test each method in pry here
+# puts get_user_function # only use for testing
+# binding.pry # test each method in pry here
 
 user_function = get_user_function
 
@@ -110,7 +110,7 @@ puts "Value 2: "
 user_val_2 = gets.chomp
 
 # outputs string of the equation user is asking to run.
-puts "You are requesting the the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}"
+puts "You have requested the the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}"
 
 # would ideally call a different method here for user to confirm the proposed calcuation. if not correct, prompt user to provide new inputs for function and values.
 
