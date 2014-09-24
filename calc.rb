@@ -9,8 +9,8 @@ require 'pry'
 # --------------GET USER INPUT METHODS----------------
 
 def get_user_function
-  puts '''What function would you like to perform?
-  Please type the letter associated with your desired function as indicated below:
+  puts '''What calculation would you like to perform?
+  Please type the letter associated with your desired function:
 
   Type "A" for Addition
   Type "S" for Subtraction
@@ -42,6 +42,18 @@ end
 # whether here or in Get User Input Methods, need to make sure arguments are floats when being evaluated
 
 def user_function_symbol(requested_function)
+  while requested_function != "A" && requested_function != "S" && requested_function != "M" && requested_function != "D" # testing for valid function input
+    puts '''You have typed an invalid function type. Please try again.
+
+    Type "A" for Addition
+    Type "S" for Subtraction
+    Type "M" for Multiplication
+    Type "D" for Division
+
+    '''
+    requested_function = gets.chomp.upcase
+  end
+
   if requested_function == "A"
     return "+"
 
@@ -55,6 +67,7 @@ def user_function_symbol(requested_function)
     return "/"
 
   end
+
 end
 
 
@@ -86,11 +99,27 @@ def calculate_equation(val_1, val_2, function)
     puts "The solution to your problem is" + (val_1.to_f * val_2.to_f).to_s
 
   elsif function == "D"
-    puts "The solution to your problem is " + (val_1.to_f / val_2.to_f).to_s
+    puts "The solution to your problem is " + (val_1.to_f / val_2.to_f).to_s  # any way to truncate or round to just 4 decimals?
 
   end
 
 end
+
+
+# --------------SUPPLEMENTAL METHODS----------------
+
+# make sure equation as understood is correct
+def confirm_equation
+  puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
+  puts "Is this correct? (y/n) "
+  gets.chomp.downcase
+end
+
+def do_calculate_again
+  puts "Would you like to calculate another equation? (y/n)"
+  gets.chomp.downcase
+end
+
 
 # --------------MAIN CODE TO RUN----------------
 
@@ -104,19 +133,77 @@ puts "Please provide the two values you would like me to use in order to calcula
 # need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
 
 puts "Value 1: "
-user_val_1 = gets.chomp # to_f here? but want to request confirm with actual value user input...
+user_val_1 = gets.chomp
 
 puts "Value 2: "
 user_val_2 = gets.chomp
 
-# outputs string of the equation user is asking to run.
-puts "You have requested the the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}"
+confirmed = confirm_equation
 
-# would ideally call a different method here for user to confirm the proposed calcuation. if not correct, prompt user to provide new inputs for function and values.
+binding.pry
 
-calculate_equation(user_val_1, user_val_2, user_function)
+if confirmed == "y" || confirmed == "yes"
+  calculate_equation(user_val_1, user_val_2, user_function)
+end
 
+while confirmed != "y" && confirmed != "yes"
+  calculate_equation(user_val_1, user_val_2, user_function)
 
+  puts "Sorry about that. Let's try this again."
+
+  user_function = get_user_function
+
+  puts "Value 1: "
+  user_val_1 = gets.chomp
+
+  puts "Value 2: "
+  user_val_2 = gets.chomp
+
+  confirmed = confirm_equation
+end
+
+calculate_again = do_calculate_again
+
+binding.pry
+
+while calculate_again == "y" || calculate_again == "yes"
+
+  user_function = get_user_function
+
+  puts "Please provide the two values you would like me to use in order to calculate your result."
+  # need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
+
+  puts "Value 1: "
+  user_val_1 = gets.chomp
+
+  puts "Value 2: "
+  user_val_2 = gets.chomp
+
+  confirmed = confirm_equation
+
+  if confirmed == "y" || confirmed == "yes"
+    calculate_equation(user_val_1, user_val_2, user_function)
+  end
+
+  while confirmed != "y" && confirmed != "yes"
+    calculate_equation(user_val_1, user_val_2, user_function)
+
+    puts "Sorry about that. Let's try this again."
+
+    user_function = get_user_function
+
+    puts "Value 1: "
+    user_val_1 = gets.chomp
+
+    puts "Value 2: "
+    user_val_2 = gets.chomp
+
+    confirmed = confirm_equation
+  end
+
+  calculate_again = do_calculate_again
+
+end
 
 
 
