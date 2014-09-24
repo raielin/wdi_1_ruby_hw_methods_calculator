@@ -9,14 +9,14 @@ require 'pry'
 # --------------GET USER INPUT METHODS----------------
 
 def get_user_function
-  puts '''What calculation would you like to perform?
+  puts '''
+  What calculation would you like to perform?
   Please type the letter associated with your desired function:
 
   Type "A" for Addition
   Type "S" for Subtraction
   Type "M" for Multiplication
   Type "D" for Division
-
   '''
   gets.chomp.upcase
 
@@ -49,7 +49,6 @@ def user_function_symbol(requested_function)
     Type "S" for Subtraction
     Type "M" for Multiplication
     Type "D" for Division
-
     '''
     requested_function = gets.chomp.upcase
   end
@@ -110,7 +109,6 @@ end
 
 # make sure equation as understood is correct
 def confirm_equation
-  puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
   puts "Is this correct? (y/n) "
   gets.chomp.downcase
 end
@@ -138,6 +136,7 @@ user_val_1 = gets.chomp
 puts "Value 2: "
 user_val_2 = gets.chomp
 
+puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
 confirmed = confirm_equation
 
 binding.pry
@@ -147,9 +146,7 @@ if confirmed == "y" || confirmed == "yes"
 end
 
 while confirmed != "y" && confirmed != "yes"
-  calculate_equation(user_val_1, user_val_2, user_function)
-
-  puts "Sorry about that. Let's try this again."
+  puts "\nSorry about that. Let's try this again.\n"
 
   user_function = get_user_function
 
@@ -159,8 +156,11 @@ while confirmed != "y" && confirmed != "yes"
   puts "Value 2: "
   user_val_2 = gets.chomp
 
+  puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
   confirmed = confirm_equation
 end
+
+calculate_equation(user_val_1, user_val_2, user_function)
 
 calculate_again = do_calculate_again
 
@@ -179,6 +179,7 @@ while calculate_again == "y" || calculate_again == "yes"
   puts "Value 2: "
   user_val_2 = gets.chomp
 
+  puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
   confirmed = confirm_equation
 
   if confirmed == "y" || confirmed == "yes"
@@ -186,9 +187,7 @@ while calculate_again == "y" || calculate_again == "yes"
   end
 
   while confirmed != "y" && confirmed != "yes"
-    calculate_equation(user_val_1, user_val_2, user_function)
-
-    puts "Sorry about that. Let's try this again."
+    puts "\nSorry about that. Let's try this again.\n"
 
     user_function = get_user_function
 
@@ -198,8 +197,11 @@ while calculate_again == "y" || calculate_again == "yes"
     puts "Value 2: "
     user_val_2 = gets.chomp
 
+    puts "You have requested the following calcuation: #{user_val_1} #{user_function_symbol(user_function)} #{user_val_2}."
     confirmed = confirm_equation
   end
+
+  calculate_equation(user_val_1, user_val_2, user_function)
 
   calculate_again = do_calculate_again
 
