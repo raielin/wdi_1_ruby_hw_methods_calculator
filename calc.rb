@@ -24,15 +24,39 @@ def get_user_function
 
 end
 
-def get_user_values(user_val_1, user_val_2)
-  puts "Please provide the two values you would like me to use in order to calculate your result."
-  # need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
-end
+# commenting out method get_user_values for now. not sure how to properly define such a method. moved to main code below.
+# def get_user_values
+#   puts "Please provide the two values you would like me to use in order to calculate your result."
+#   # need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
+
+#   puts "Value 1: "
+#   user_val_1 = gets.chomp.to_f
+
+#   puts "Value 2: "
+#   user_val_2 = gets.chomp.to_f
+# end
 
 
 # --------------FUNCTION METHODS----------------
 
 # whether here or in Get User Input Methods, need to make sure arguments are floats when being evaluated
+
+def recall_user_function(function_input)
+  if function_input = "A"
+    return "+"
+
+  elsif function_input = "S"
+    return "-"
+
+  elsif function_input = "M"
+    return "*"
+
+  elsif function_input = "D"
+    return "/"
+
+  end
+end
+
 
 def addition(val_1, val_2)
   val_1 + val_2
@@ -52,13 +76,23 @@ end
 
 
 
-# --------------CODE TO RUN----------------
+# --------------MAIN CODE TO RUN----------------
 
-puts get_user_function
+# puts get_user_function # only use for testing
+# binding.pry # test each method in pry here
 
-binding.pry # stop here to test individuals methods
+user_function = get_user_function
 
+puts "Please provide the two values you would like me to use in order to calculate your result."
+# need to think about how to collect these values. separately? can one method return two values? what about shovel - is there a reverse shovel?
 
+puts "Value 1: "
+user_val_1 = gets.chomp # to_f here? but want to request confirm with actual value user input...
+
+puts "Value 2: "
+user_val_2 = gets.chomp
+
+puts "You are requesting the calcuation: #{user_val_1}"
 
 # outputs string of the equation user is asking to run.
 # ask to confirm equation. if confirmed, run equation and output result. if not confirmed, prompt for new inputs.
